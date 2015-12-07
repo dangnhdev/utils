@@ -3,18 +3,19 @@ import java.lang.management.ManagementFactory;
 import java.io.OutputStream;
 
 public class JvmInfo {
-
         public static void getJvmInfo(OutputStream out) throws Exception {
-                long total = 0;
-                long gcTime = 0;
-                Runtime rt = Runtime.getRuntime();
-                for(GarbageCollectorMXBean gc : ManagementFactory.getGarbageCollectorMXBeans()) {
+                    long total = 0;
+                    long gcTime = 0;
+                    
+                    Runtime rt = Runtime.getRuntime();
+                    
+                    for(GarbageCollectorMXBean gc : ManagementFactory.getGarbageCollectorMXBeans()) {
                         total += gc.getCollectionCount();
                         gcTime += gc.getCollectionTime();
-                }
-                out.write(("Total JVM memory:           " +rt.totalMemory()+" (bytes)\n").getBytes());
-                out.write(("Max JVM Memory:      " +rt.maxMemory()+" (bytes)\n").getBytes());
-                out.write(("GC collected:    " +total+"\n").getBytes());
-                out.write(("GC collecting time (ms): " +gcTime+"\n").getBytes());
+                    }
+                    
+                    out.write(("Used Memory:      " + (rt.totalMemory() - rt.freeMemory())+" (bytes)\r\n").getBytes());
+                    out.write(("Total collected Garbage:    " +total+"\r\n").getBytes());
+                    out.write(("Total collecting Time (ms): " +gcTime+"\r\n").getBytes());
         }
 }
