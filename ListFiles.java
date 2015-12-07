@@ -59,8 +59,8 @@ class ListFiles {
                 File[] allFiles = dir.listFiles();
                 List<File> listFile = new ArrayList<>();
                 List<GetList> tasks = new ArrayList<GetList>();
-                // set a POOL of 16 parallel tasks ------------------
-                ForkJoinPool fjp = new ForkJoinPool(4);
+                // set a POOL of (number of your proccesor's core) parallel tasks
+                ForkJoinPool fjp = new ForkJoinPool();
                 A:
                 for (File f : allFiles) { // <<< the Label A
                     String name = f.getName();
