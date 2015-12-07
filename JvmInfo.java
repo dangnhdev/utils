@@ -3,7 +3,7 @@ import java.lang.management.ManagementFactory;
 import java.io.OutputStream;
 
 public class JvmInfo {
-        public static void getJvmInfo(OutputStream out) throws Exception {
+        public static void getJvmInfo() {
                     long total = 0;
                     long gcTime = 0;
                     
@@ -14,8 +14,8 @@ public class JvmInfo {
                         gcTime += gc.getCollectionTime();
                     }
                     
-                    out.write(("Used Memory:      " + (rt.totalMemory() - rt.freeMemory())+" (bytes)\r\n").getBytes());
-                    out.write(("Total collected Garbage:    " +total+"\r\n").getBytes());
-                    out.write(("Total collecting Time (ms): " +gcTime+"\r\n").getBytes());
+                    System.out.println("Used Memory:      " + (rt.totalMemory() - rt.freeMemory())+" (bytes)\r\n");
+                    System.out.println("Total collected Garbage:    " +total+"\r\n");
+                    System.out.println("Total collecting Time (ms): " +gcTime+"\r\n");
         }
 }
