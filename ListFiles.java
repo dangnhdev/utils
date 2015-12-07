@@ -35,7 +35,7 @@ class ListFiles {
          * @param all boolean TRUE if subdirectories are included
          * @return List<File>
          */
-        public List<File> listFiles(String dir, String[] ext, boolean all) {
+        public static List<File> listFiles(String dir, String[] ext, boolean all) {
             try {   // wait for timeout in 5 microsec. step
                 return listFiles(new File(dir), ext, all);
             } catch (Exception ex) {
